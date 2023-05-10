@@ -6,17 +6,16 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/stianeikeland/go-rpio"
 	telebot "gopkg.in/telebot.v3"
 )
 
 var (
 	// TeleToken bot
-	TeleToken = os.Getenv("TELE_TOKEN")
+	TeleToken = "5953720677:AAEh3PDLA6qN5BVq0Okcq9LS2cT8JHtNfYA"
+	//TeleToken = os.Getenv("TELE_TOKEN")
 )
 
 // kbotCmd represents the kbot command
@@ -45,31 +44,8 @@ to quickly create a Cobra application.`,
 			return
 		}
 
-		err = rpio.Open()
-		if err != nil {
-			log.Printf("Unable to open gpio: %s", err.Error())
-		}
-
-		defer rpio.Close()
-
-		trafficSignal := make(map[string]map[string]int8)
-
-		trafficSignal["red"] = make(map[string]int8)
-		trafficSignal["amber"] = make(map[string]int8)
-		trafficSignal["green"] = make(map[string]int8)
-
-		trafficSignal["red"]["pin"] = 12
-		//default on/off
-		//trafficSignal["red"]["on"]=0
-		trafficSignal["amber"]["pin"] = 27
-		trafficSignal["green"]["pin"] = 22
-
 		kbot.Handle(telebot.OnText, func(m telebot.Context) error {
 
-			var (
-				err error
-				pin = rpio.Pin(0)
-			)
 			log.Print(m.Message().Payload, m.Text())
 			payload := m.Message().Payload
 
@@ -77,20 +53,11 @@ to quickly create a Cobra application.`,
 			case "hello":
 				err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", appVersion))
 
-			case "red", "amber", "green":
-				pin = rpio.Pin(trafficSignal[payload]["pin"])
-				if trafficSignal[payload]["on"] == 0 {
-					pin.Output()
-					trafficSignal[payload]["on"] = 1
-				} else {
-					pin.Input()
-					trafficSignal[payload]["on"] = 0
-				}
-
-				err = m.Send(fmt.Sprintf("Switch %s light signal to %d", payload, trafficSignal[payload]["on"]))
+			case "info":
+				err = m.Send(fmt.Sprint("test bot %s!", appVersion))
 
 			default:
-				err = m.Send("Usage: /s red|amber|green")
+				err = m.Send("Usage: /s hello|info")
 
 			}
 

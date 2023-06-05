@@ -1,0 +1,15 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: gcr.io/durable-spot-386111/kbot
+  tag: "v1.0.2-3a58167"
+  arch: amd64
+  
+secret:
+  name: kbot
+  tokenKey: token
+  tokenName: TELE_TOKEN

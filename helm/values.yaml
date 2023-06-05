@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/durable-spot-386111/kbot
+  repository: gcr.io/durable-spot-386111
   tag: "v1.0.2-3a58167"
   arch: amd64
   

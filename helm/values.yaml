@@ -3,12 +3,10 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   repository: gcr.io/durable-spot-386111
-  tag: "v1.0.2-3a58167"
+  tag: "v1.0.3-2dc87fa"
   arch: amd64
-  
 secret:
   name: kbot
   tokenKey: token

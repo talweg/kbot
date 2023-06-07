@@ -4,10 +4,12 @@
 
 replicaCount: 1
 image:
-  repository: gcr.io/durable-spot-386111
+  registry: "ghcr.io"
+  repository: "talweg/kbot"
   tag: "v1.0.3-2dc87fa"
+  os: linux
   arch: amd64
 secret:
-  name: kbot
-  tokenKey: token
-  tokenName: TELE_TOKEN
+  name: "kbot"
+  tokenKey: "token"
+  tokenName: "TELE_TOKEN"

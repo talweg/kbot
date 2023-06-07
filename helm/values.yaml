@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: gcr.io/durable-spot-386111
-  tag: "v1.0.3-2dc87fa"
+  tag: "v1.0.3-221e1d6"
   arch: amd64
 secret:
   name: kbot

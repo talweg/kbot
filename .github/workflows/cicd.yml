@@ -28,6 +28,7 @@ jobs:
         env:
           APP: "kbot"
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
+          TELE_TOKEN: ${{ secrets.TELE_TOKEN}}
         run: make image push 
   cd:
     name: CD

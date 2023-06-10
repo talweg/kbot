@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: "ghcr.io"
   repository: "talweg/kbot"
-  tag: "v1.0.3-690fe6f"
+  tag: "v1.0.3-b0c8c5c"
   os: linux
   arch: amd64
 secret:
